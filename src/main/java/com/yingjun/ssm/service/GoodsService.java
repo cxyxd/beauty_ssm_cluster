@@ -1,8 +1,8 @@
 package com.yingjun.ssm.service;
 
-import com.yingjun.ssm.entity.Goods;
-
 import java.util.List;
+
+import com.yingjun.ssm.entity.Goods;
 
 public interface GoodsService {
 

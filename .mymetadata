@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="beauty_ssm_cluster"
+  id="myeclipse.1471322910633"
+  context-root="/beauty_ssm_cluster"
+  j2ee-spec="1.7"
+  archive="beauty_ssm_cluster.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

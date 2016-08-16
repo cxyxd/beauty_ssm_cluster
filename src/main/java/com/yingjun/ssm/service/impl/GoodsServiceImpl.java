@@ -1,5 +1,16 @@
 package com.yingjun.ssm.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.yingjun.ssm.cache.RedisCache;
 import com.yingjun.ssm.dao.GoodsDao;
 import com.yingjun.ssm.dao.OrderDao;
@@ -9,16 +20,6 @@ import com.yingjun.ssm.entity.User;
 import com.yingjun.ssm.enums.ResultEnum;
 import com.yingjun.ssm.exception.BizException;
 import com.yingjun.ssm.service.GoodsService;
-import org.apache.commons.collections.MapUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
