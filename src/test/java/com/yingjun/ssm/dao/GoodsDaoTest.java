@@ -19,7 +19,7 @@ public class GoodsDaoTest {
 	@Autowired
 	private GoodsDao goodsDao;
 
-	@Test
+	//@Test
 	public void testQueryAll() {
 		List<Goods> list=goodsDao.queryAll(0, 100);
 		for (Goods goods : list) {
@@ -27,8 +27,11 @@ public class GoodsDaoTest {
 		}
 		System.out.println("--------------------------");
 	}
+	
 
-	@Test
+	
+
+	//@Test
 	public void testReduceNumber() {
 		int result=goodsDao.reduceNumber(1000);
 		System.out.println("testReduceNumber result:"+result);

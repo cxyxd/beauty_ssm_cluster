@@ -14,6 +14,16 @@ public interface GoodsService {
 	 * @return
 	 */
 	List<Goods> getGoodsList(int offset, int limit);
+	
+	
+	/**
+	 * 根据偏移量查询可用商品列表
+	 *
+	 * @param offset
+	 * @param limit
+	 * @return
+	 */
+	List<Goods> queryByField(int offset, int limit,String search);
 
 	/**
 	 * 商品购买
@@ -25,5 +35,10 @@ public interface GoodsService {
 	 */
 	
 	void buyGoods(long userPhone, long goodsId, boolean useProcedure);
+	
+	
+	int getGoodsCount(String search);
+	
+
 
 }

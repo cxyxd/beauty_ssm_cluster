@@ -9,6 +9,29 @@
 		ORDER BY create_time DESC
 		limit #{offset},#{limit}
 	</select>
+	
+	
+	<select id="queryByField" resultType="Goods">
+		SELECT *
+		FROM _goods
+		where title like '%${search}%'
+		ORDER BY create_time DESC
+		limit #{offset},#{limit}
+	</select>
+
+	<select id="getAllGoodsCount"  resultType="int">
+		SELECT count(*)
+		FROM _goods
+		where state='1'
+	</select>
+	
+	<select id="getCountByField"  resultType="int">
+		SELECT count(*)
+		FROM _goods
+		where title like '%${search}%'
+		and state='1'
+	</select>
+ 
 
 	<update id="reduceNumber">
 		UPDATE _goods 

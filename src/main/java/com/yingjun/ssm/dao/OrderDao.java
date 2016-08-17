@@ -3,6 +3,7 @@ package com.yingjun.ssm.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.omg.CORBA.INTERNAL;
 
 import com.yingjun.ssm.entity.Order;
 
@@ -33,4 +34,7 @@ public interface OrderDao {
      * @return
      */
     List<Order> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+    
+    
+
 }

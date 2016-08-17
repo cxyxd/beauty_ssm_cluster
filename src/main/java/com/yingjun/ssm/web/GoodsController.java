@@ -1,5 +1,6 @@
 package com.yingjun.ssm.web;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -49,12 +50,33 @@ public class GoodsController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public BootStrapTableResult<Goods> list(Integer offset, Integer limit) {
+	public BootStrapTableResult<Goods> list(Integer offset, Integer limit,String search,String departmentname) {
 		LOG.info("invoke----------/goods/list");
 		offset = offset == null ? 0 : offset;//默认便宜0
 		limit = limit == null ? 50 : limit;//默认展示50条
-		List<Goods> list = goodsService.getGoodsList(offset, limit);
-		return new BootStrapTableResult<Goods>(list);
+		List<Goods> list=null;
+		System.out.println("search "+search);
+		System.out.println("department: "+departmentname);
+		search=departmentname; 
+		if (search==null) {
+			list= goodsService.getGoodsList(offset, limit);
+		}else {
+			try {
+				search=new String(search.getBytes("iso8859-1"), "utf-8");
+				System.out.println(search+" ppp ");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace(); 
+			}
+			list= goodsService.queryByField(offset, limit,search);
+		}
+		
+		BootStrapTableResult<Goods> result= new BootStrapTableResult<Goods>(list);
+		int count=goodsService.getGoodsCount(search);
+		System.out.println("count: "+count);
+		result.setTotal(count);
+	//	http://blog.csdn.net/song19890528/article/details/50299885
+		//http://www.jb51.net/article/60965.htm
+		return result;
 	}
 	
 	

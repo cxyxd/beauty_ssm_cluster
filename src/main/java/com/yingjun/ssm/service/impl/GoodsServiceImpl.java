@@ -1,5 +1,6 @@
 package com.yingjun.ssm.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,16 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 		return result_cache;
 	}
+	
+	@Override
+	public int getGoodsCount(String search){
+		if (search==null) {
+			return goodsDao.getAllGoodsCount();
+		}else {
+			return goodsDao.getCountByField(search);
+		}
+		
+	}
 
 	@Transactional
 	@Override
@@ -96,6 +107,29 @@ public class GoodsServiceImpl implements GoodsService {
 				}
 			}
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.yingjun.ssm.service.GoodsService#getGoodsList(int, int, java.lang.String)
+	 */
+	@Override
+	public List<Goods> queryByField(int offset, int limit, String search) {
+		String cache_key = RedisCache.CAHCENAME + "|getGoodsList|" + offset + "|" + limit+"|"+search;
+		List<Goods> result_cache = cache.getListCache(cache_key, Goods.class);
+		if (result_cache == null) {
+			// 缓存中没有再去数据库取，并插入缓存（缓存时间为60秒）
+ 
+			System.out.println(search+" search");
+			result_cache = goodsDao.queryByField(offset, limit,search);
+			if (result_cache!=null) {
+				cache.putListCacheWithExpireTime(cache_key, result_cache, RedisCache.CAHCETIME);
+			}
+			LOG.info("put cache with key:" + cache_key);
+			return result_cache;
+		} else {
+			LOG.info("get cache with key:" + cache_key);
+		}
+		return result_cache;
 	}
 
 }

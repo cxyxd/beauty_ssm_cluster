@@ -30,7 +30,7 @@ import com.yingjun.ssm.dao.UserDao;
  * @author yingjun
  *
  */
-@Component
+//@Component
 public class BizQuartz {
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());

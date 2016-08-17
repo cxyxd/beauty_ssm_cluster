@@ -16,6 +16,16 @@ public interface GoodsDao {
      * @return
      */
     List<Goods> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+    
+    
+    /**
+     * 根据偏移量查询可用商品列表
+     *
+     * @param offset
+     * @param limit
+     * @return
+     */
+    List<Goods> queryByField(@Param("offset") int offset, @Param("limit") int limit,@Param("search") String search);
 
     /**
      * 商品减库存
@@ -35,6 +45,11 @@ public interface GoodsDao {
      * @param paramMap
      */
     void bugWithProcedure(Map<String, Object> paramMap);
+    
+    int getAllGoodsCount();
+    
+    int getCountByField(@Param("search") String search);
+    
     
     
 }
